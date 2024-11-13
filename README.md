@@ -69,12 +69,12 @@ Airflow manages and schedules the pipeline, triggering data fetching, processing
 
 ## ARCHITECTURE DIAGRAM :-
 
-![Project Architecture](NEWS_DATA_ANALYSIS_ARCHITECTURE.png)  
+![Project Architecture](FintechData_migration.png)  
 
 
 
 
-
+ Python, Azure SQL Database, SQL, Azure Synapse, ADLS, PySpark, Delta Tables
 
 
 
@@ -86,19 +86,19 @@ Airflow manages and schedules the pipeline, triggering data fetching, processing
 
 ## TECHNOLOGY USED :-
 
-<h3>Airflow:</h3>
+<h3> Azure SQL Database:</h3>
 
 Orchestrates the entire workflow by defining tasks that automate fetching, processing, saving, and uploading data.
 
-<h3>Python:</h3>
+<h3>Azure Synapse:</h3>
 
 Used for scripting the logic for data fetching, processing, and file handling.
 
-<h3>News API:</h3>
+<h3> ADLS:</h3>
 
 Provides news data based on search queries. It offers access to various news articles, including their metadata, such as title, author, and content.
 
-<h3>Pandas:</h3>
+<h3> PySpark:</h3>
 
 A Python library used to handle the structured data (articles) in a DataFrame, process it, and save it to disk in a columnar format (Parquet).
 
@@ -106,7 +106,7 @@ A Python library used to handle the structured data (articles) in a DataFrame, p
 
 A cloud storage service where the processed Parquet files are stored temporarily before being ingested into Snowflake.
 
-<h3>Snowflake:</h3>
+<h3> Delta Tables:</h3>
 
 Data warehouse that will eventually store and analyze the news data once it's transferred from GCS.
 
