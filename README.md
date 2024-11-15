@@ -14,24 +14,78 @@ The project automates the process of fetching news articles related to Tesla fro
 
 
 
-### PROJECT EXPLANATION :-  
+## PROJECT EXPLANATION :-  
 
+### 1. Raw Data Ingestion (Bronze Layer)
+The pipeline starts with raw data ingestion into the Bronze Layer, stored as Parquet files in Azure Data Lake Storage (ADLS). The bronze layer contains data from various financial domains:
 
-#### Data Fetching: 
-The pipeline retrieves recent news articles related to Tesla using the News API. Each article’s data, including author, title, source, timestamp, and content, is processed and stored in a DataFrame.
+* Accounts
+* Customers
+* Loans
+* Payments
+* Transactions
+  
+ #### Key Details 
+  * The data in this layer is ingested in its original format, ensuring no loss of raw information.
+  * It serves as the source of truth for all downstream transformations.
 
-#### Data Processing and Storage in GCS:
+### 2. Transformation and Structuring (Silver Layer)
+Using PySpark, the raw data is transformed into structured datasets, which are saved as Delta Tables in the Silver Layer.
 
-After processing, the data is saved locally as a Parquet file.
-The file is then uploaded to a specified location in a Google Cloud Storage (GCS) bucket.
+ #### Key Transformations:
+* <h3>Accounts Dataset:</h3>
+  
+  Calculate the age of accounts in years from the account opening date.
 
-#### Data Loading to Snowflake:
+* <h3>Customers Dataset:</h3>
+  
+   Concatenate first and last names to form FullName, and mask sensitive email information.
 
-In Snowflake, a destination table is created if it doesn’t already exist.
-The Parquet file from the GCS bucket is copied into this destination table for analysis.
+* <h3>Loans Dataset:</h3>
+  Compute:
 
-#### Airflow Orchestration:
-Airflow manages and schedules the pipeline, triggering data fetching, processing, storage, and loading operations daily.
+  Total interest using loan amount and interest rate.
+  Loan duration in years using start and end dates.
+  
+ * <h3>Payments Dataset:</h3>
+  Add a derived column to calculate the number of days since the last payment.
+
+* <h3>Transactions Dataset:</h3>
+
+  Categorize transactions as "Income," "Expense," or "Other" based on the transaction type.
+
+  The Silver Layer acts as the intermediary step where raw data is enriched and standardized for analytical use.
+
+### 3. Dimensional Modeling and Analytical Data (Gold Layer)
+The Gold Layer comprises dimensional and fact tables created from the Silver Layer. These tables are optimized for reporting and analytics.
+
+#### Dimensional Tables:
+* Dim_Customers:
+  Customer-centric details such as name, email, phone, and address.
+
+* Dim_Accounts:
+  Account-specific attributes like account type, balance, and account age.
+
+* Dim_Loans:
+  Loan-related details, including loan type, total interest, and duration.
+
+#### Fact Tables:
+ * Fact_Payments:
+  Combines payment information with customer and loan details for detailed payment analysis.
+
+* Fact_Transactions:
+  Links transactional data with accounts and customers to provide insights into spending and income patterns.
+
+### 4. Orchestration and Metadata Management
+The entire workflow is automated using SQL scripts and PySpark notebooks, which perform scheduled tasks for ingestion, transformation, and loading.
+Schema metadata is managed and retrieved using SQL queries to ensure compatibility and consistency.
+
+### 5. Final Analysis and Reporting
+The Gold Layer data, stored in Delta Tables, is now ready for:
+
+* Business Intelligence (BI) tools.
+* Detailed reporting and financial insights.
+* Predictive analytics for better decision-making.
 
   
   
@@ -73,10 +127,11 @@ Airflow manages and schedules the pipeline, triggering data fetching, processing
 
 
 
+The architecture includes:
 
- Python, Azure SQL Database, SQL, Azure Synapse, ADLS, PySpark, Delta Tables
-
-
+* Bronze Layer: Stores raw Parquet files in ADLS.
+* Silver Layer: Structured Delta Tables after initial transformations.
+* Gold Layer: Analytical tables for reporting and insights.
 
 
 
@@ -86,33 +141,25 @@ Airflow manages and schedules the pipeline, triggering data fetching, processing
 
 ## TECHNOLOGY USED :-
 
-<h3> Azure SQL Database:</h3>
+<h3> SQL:</h3>
 
-Orchestrates the entire workflow by defining tasks that automate fetching, processing, saving, and uploading data.
+Facilitates schema creation, data validation, and metadata retrieval.
 
-<h3>Azure Synapse:</h3>
+<h3>PySpark:</h3>
 
-Used for scripting the logic for data fetching, processing, and file handling.
+Handles large-scale transformations and calculations for financial data.
 
-<h3> ADLS:</h3>
+<h3> Azure Synapse Analytics:</h3>
 
-Provides news data based on search queries. It offers access to various news articles, including their metadata, such as title, author, and content.
+Used for querying, scripting, and integrating the refined data for analytical workloads.
 
-<h3> PySpark:</h3>
+<h3> Azure Data Lake Storage (ADLS):</h3>
 
-A Python library used to handle the structured data (articles) in a DataFrame, process it, and save it to disk in a columnar format (Parquet).
+Centralized storage for raw (bronze), structured (silver), and analytical (gold) datasets.
 
-<h3>Google Cloud Storage (GCS):</h3>
+<h3>Delta Tables:</h3>
 
-A cloud storage service where the processed Parquet files are stored temporarily before being ingested into Snowflake.
-
-<h3> Delta Tables:</h3>
-
-Data warehouse that will eventually store and analyze the news data once it's transferred from GCS.
-
-
-
-
+Enables ACID transactions and schema enforcement during data transformation and storage.
 
 
 
@@ -160,7 +207,8 @@ Data warehouse that will eventually store and analyze the news data once it's tr
   </br>
 
   
-
+### Conclusion
+This project demonstrates an efficient approach to financial data processing using Azure and PySpark technologies. The resulting gold-layer tables enable accurate and timely business intelligence to support financial decision-making.
 
 
 
