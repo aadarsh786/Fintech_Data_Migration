@@ -139,9 +139,9 @@ Data warehouse that will eventually store and analyze the news data once it's tr
   [Notebook-2](SilverToGoldDataProcess.ipynb) 
 * Converts structured data into analytical tables.
 
- #### BRONZE:- Raw data
- #### SILVER:- Transform data
- #### GOLD:- Final Aggregated data
+    #### BRONZE:- Raw data
+    #### SILVER:- Transform data
+    #### GOLD:- Final Aggregated data
  
  </br>
  </br>
