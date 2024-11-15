@@ -130,23 +130,31 @@ Data warehouse that will eventually store and analyze the news data once it's tr
 
 * <h3>Pyspark Notebooks:
 
-  ####  Bronze to Silver Transformation 
-  [Notebook-1](BronzeToSilverDataProcess.ipynb) - Contains the core functions for fetching and processing data, and uploading it to GCS. </h3>
+  ####  Bronze to Silver Transformation :
+  [Notebook-1](BronzeToSilverDataProcess.ipynb) 
+* Handles the ingestion and transformation of raw datasets.
    </br>
-  ####  Silver to Gold Transformation
-  [Notebook-2](SilverToGoldDataProcess.ipynb) - Contains the core functions for fetching and processing data, and uploading it to GCS. </h3>
+   
+  ####  Silver to Gold Transformation :
+  [Notebook-2](SilverToGoldDataProcess.ipynb) 
+* Converts structured data into analytical tables.
+
+ #### BRONZE:- Raw data
+ #### SILVER:- Transform data
+ #### GOLD:- Final Aggregated data
+ 
  </br>
  </br>
  
-* <h3>Sql Scripts :</h3>
+* <h2>SQL Scripts :</h2>
 
-  #### Sql Queries for generating data source tables :
-   * [ACCOUNTS-TABLE](Accounts.sql) -  Defines the workflow and schedules the data pipeline tasks.  </h3>
-   * [CUSTOMERS-TABLE](Customers.sql) -  Defines the workflow and schedules the data pipeline tasks.  </h3>
-   * [LOANS-TABLE](Loans.sql) -  Defines the workflow and schedules the data pipeline tasks.  </h3>
-   * [PAYMENTS-TABLE](Payments.sql) -  Defines the workflow and schedules the data pipeline tasks.  </h3>
-   * [TRANSACTIONS-TABLE](Transactions.sql) -  Defines the workflow and schedules the data pipeline tasks.  </h3>
-  
+   ####  Define the source tables and schema for various datasets: :
+ * [ACCOUNTS-TABLE](Accounts.sql) 
+ * [CUSTOMERS-TABLE](Customers.sql) 
+ * [LOANS-TABLE](Loans.sql) 
+ * [PAYMENTS-TABLE](Payments.sql) 
+ * [TRANSACTIONS-TABLE](Transactions.sql)
+
 
   </br>
   </br>
