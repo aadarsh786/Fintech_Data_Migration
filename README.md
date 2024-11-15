@@ -126,29 +126,32 @@ Data warehouse that will eventually store and analyze the news data once it's tr
 
 
 
-## Script Files  :-
-* <h3>Python-File:
-[Python-code-snippet](prac2.py) - Contains the core functions for fetching and processing data, and uploading it to GCS. </h3>
+## Project Files  :-
+
+* <h3>Pyspark Notebooks:
+
+  ####  Bronze to Silver Transformation 
+  [Notebook-1](BronzeToSilverDataProcess.ipynb) - Contains the core functions for fetching and processing data, and uploading it to GCS. </h3>
+   </br>
+  ####  Silver to Gold Transformation
+  [Notebook-2](SilverToGoldDataProcess.ipynb) - Contains the core functions for fetching and processing data, and uploading it to GCS. </h3>
  </br>
  </br>
  
- * <h3>Airflow-Dag :
-  [Airflow-Dag-file](airflowjobprac.py) -  Defines the workflow and schedules the data pipeline tasks.  </h3>
+* <h3>Sql Scripts :</h3>
+
+  #### Sql Queries for generating data source tables :
+   * [ACCOUNTS-TABLE](Accounts.sql) -  Defines the workflow and schedules the data pipeline tasks.  </h3>
+   * [CUSTOMERS-TABLE](Customers.sql) -  Defines the workflow and schedules the data pipeline tasks.  </h3>
+   * [LOANS-TABLE](Loans.sql) -  Defines the workflow and schedules the data pipeline tasks.  </h3>
+   * [PAYMENTS-TABLE](Payments.sql) -  Defines the workflow and schedules the data pipeline tasks.  </h3>
+   * [TRANSACTIONS-TABLE](Transactions.sql) -  Defines the workflow and schedules the data pipeline tasks.  </h3>
   
 
   </br>
   </br>
+
   
-## Resulted output :- 
-
-<h3>The output is stored in Parquet format with unique filenames that reflect the datetime of each run.</h3>
-
- - <h3>Output_link_1 :</h3>
-  [Result1](https://github.com/aadarsh786/News-Data-Analysis-Project/blob/main/SNOWFLAKE_PROJECT_PARQUET_FILES_run_20241105064621.parquet)
-
- - <h3>Output_link_2 :</h3>
-  [Result2](https://github.com/aadarsh786/News-Data-Analysis-Project/blob/main/SNOWFLAKE_PROJECT_PARQUET_FILES_run_20241105064940.parquet)
-
 
 
 
