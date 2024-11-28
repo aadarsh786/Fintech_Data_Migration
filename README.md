@@ -8,7 +8,7 @@
 ## PROJECT OVERVIEW
 
 
-This project automates the processing of financial data using a multi-layer architecture. Raw data is ingested into Azure Data Lake Storage (ADLS), transformed into structured datasets with PySpark, and stored in Delta Tables. The data is then processed into analytical tables for reporting and insights. Airflow orchestrates the entire pipeline, ensuring periodic data processing. The final output enables business intelligence and financial decision-making through Azure Synapse Analytics.
+This project automates the processing of financial data using Azure Data Lake Storage (ADLS), PySpark for data transformation, and Delta Tables for structured storage. Data is processed into analytical tables and integrated with Azure Synapse Analytics for reporting and insights, enabling efficient business intelligence and financial decision-making.
 
 
  <br>
