@@ -7,7 +7,9 @@
 
 ## PROJECT OVERVIEW
 
-The project automates the process of fetching news articles related to Tesla from the News API, processing this data, and storing it in Google Cloud Storage (GCS) as a Parquet file. This file is later moved to a Snowflake data warehouse for analysis. The project uses Airflow for orchestration, ensuring the data ingestion and processing occur periodically and smoothly.
+
+This project automates the processing of financial data using a multi-layer architecture. Raw data is ingested into Azure Data Lake Storage (ADLS), transformed into structured datasets with PySpark, and stored in Delta Tables. The data is then processed into analytical tables for reporting and insights. Airflow orchestrates the entire pipeline, ensuring periodic data processing. The final output enables business intelligence and financial decision-making through Azure Synapse Analytics.
+
 
  <br>
 
